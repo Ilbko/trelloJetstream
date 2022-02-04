@@ -1,4 +1,5 @@
 <template>
+    <Head title="Workspaces|Trello"/>
     <app-layout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -8,8 +9,9 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <welcome />
+                <div class="d-flex flex-wrap ">
+                    <workspace v-for="workspaceItem in workspaces" 
+                    v-bind:key="workspaceItem.workspace_id" v-bind:workspaceItem="workspaceItem"/>
                 </div>
             </div>
         </div>
@@ -17,14 +19,18 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent, onMounted } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import Welcome from '@/Jetstream/Welcome.vue'
+    import Workspace from '@/Jetstream/Workspace.vue'
 
     export default defineComponent({
         components: {
             AppLayout,
-            Welcome,
+            Workspace
         },
+        props: {
+            workspaces: {type: Array, required: true}
+        }
     })
 </script>

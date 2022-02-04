@@ -17,6 +17,8 @@ class CreateWorkspacesTable extends Migration
             $table->id('workspace_id');
             $table->string('workspace_name', 64);
             $table->unsignedBigInteger('workspace_user_id');
+            $table->foreign('workspace_user_id')->references('id')
+            ->on('users')->onDelete('cascade');
             $table->string('workspace_photo_path', 2048)->nullable();
             $table->timestamps();
         });

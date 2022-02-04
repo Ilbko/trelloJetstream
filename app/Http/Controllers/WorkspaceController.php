@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\workspace;
 use App\Http\Requests\StoreworkspaceRequest;
 use App\Http\Requests\UpdateworkspaceRequest;
+use Inertia\Inertia;
 
 class WorkspaceController extends Controller
 {
@@ -15,7 +16,9 @@ class WorkspaceController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard', [
+            'workspaces' => Workspace::all()->where('workspace_user_id', auth()->user()->id)
+        ]);
     }
 
     /**

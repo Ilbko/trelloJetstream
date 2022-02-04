@@ -1,3 +1,4 @@
+@routes
 <template>
     <div>
         <Head :title="title" />

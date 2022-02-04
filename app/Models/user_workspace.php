@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class user_workspace extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'user_workspace_id';
 }
