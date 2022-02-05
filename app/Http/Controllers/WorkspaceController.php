@@ -58,10 +58,14 @@ class WorkspaceController extends Controller
      * @param  \App\Models\workspace  $workspace
      * @return \Illuminate\Http\Response
      */
-    public function show(workspace $workspace)
+    public function show($workspaceId)
     {
+        $workspace = Workspace::findOrFail($workspaceId);
+        $boards = Board::all()->where(('board_workspace_id'), $workspace->workspaceId);
+        
         return Inertia::render('Workspace', [
-
+            'workspaceItem' => $workspace,
+            'boards' => $boards
         ]);
     }
 

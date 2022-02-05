@@ -1,19 +1,11 @@
 <template>
-    <div class="d-inline-flex ml-2 mt-2">
-        <div class="card" style="height: 100px; width: 24%; background-color: #adff2f">
-            <div class="card-body pt-2 mx-auto" style="width: 80%">
-                <h5 class="card-title">{{workspaceItem.workspace_name}}</h5>
-                    <!-- <div class="d-flex justify-content-between">
-                        <a href="{{route('workspace', $workspace.workspace_id)}}">
-                          <button class="btn btn-outline-success">Перейти</button>
-                        </a> 
-                        <a href="{{route('workspace-destroy', $workspace.workspace_id)}}">
-                          <button class="btn btn-outline-danger">Удалить</button>
-                        </a> 
-                    </div> -->
+    <li class="list-group-item mt-2">
+        <Link :href="route('workspace', workspaceItem.workspace_id)">
+            <div class="flex justify-content-between" style="border-radius: 3px; box-shadow: 0 1px 0 #091e4240; background-color:#fff">        
+                <h6>{{workspaceItem.workspace_name}}</h6>
             </div>
-        </div>
-    </div>
+        </Link>
+    </li>
 </template>
 
 <script>
@@ -21,9 +13,11 @@
     import { Link } from '@inertiajs/inertia-vue3'
 
     export default defineComponent({
+        components: {
+            Link
+        },
         props: {
             workspaceItem: Object,
-            Link
         }
     })    
 </script>
