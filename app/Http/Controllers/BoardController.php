@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\board;
+use App\Models\column;
+use App\Models\card;
 use App\Http\Requests\StoreboardRequest;
 use App\Http\Requests\UpdateboardRequest;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class BoardController extends Controller
 {
@@ -45,9 +49,22 @@ class BoardController extends Controller
      * @param  \App\Models\board  $board
      * @return \Illuminate\Http\Response
      */
-    public function show(board $board)
+    public function show($boardId)
     {
-        //
+        Log::info($boardId);
+        $board = Board::findOrFail($boardId);
+        $columns = Column::all()->where(('column_board_id'), $board->board_id);
+        $cards = array();
+        foreach($columns as $column)
+        {
+            $cards = array_merge($cards, Card::all()->where(('card_column_id'), $column->column_id)->toArray());
+        }
+
+        return Inertia::render('Board', [
+            'boardItem' => $board,
+            'columns' => $columns,
+            'cards' => $cards
+        ]);
     }
 
     /**

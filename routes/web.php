@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\WorkspaceController;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,10 @@ Route::get('/', function () {
 //     return Inertia::render('Dashboard');
 // })->name('dashboard');
 
+//WorkspaceController
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [WorkspaceController::class, 'index']
 )->name('dashboard');
+
+//BoardController
+Route::middleware(['auth:sanctum', 'verified'])->get('/board/show/{boardId}', [BoardController::class, 'show']
+)->name('board');

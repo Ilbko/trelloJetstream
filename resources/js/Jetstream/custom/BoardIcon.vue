@@ -1,6 +1,6 @@
 <template>
     <div class=" ml-2 mt-2" style="width: 24%;">
-        <Link href="/board" method="post" :data="{ boardItem: boardItem }">
+        <Link :href="route('board', boardItem.board_id)">
         <div class="card" style="height: 100px; background-color: #adff2f">
             <div class="card-body pt-2 mx-auto" style="width: 80%">
                 <h5 class="card-title">{{boardItem.board_name}}</h5>

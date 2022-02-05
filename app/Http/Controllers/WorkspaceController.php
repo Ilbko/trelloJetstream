@@ -21,6 +21,7 @@ class WorkspaceController extends Controller
         $boards = array();
         foreach($workspaces as $workspace)
         {
+            //array_push делает массив массивов, не то.
             $boards = array_merge($boards, Board::all()->where(('board_workspace_id'), $workspace->workspace_id)->toArray());
         }
 
