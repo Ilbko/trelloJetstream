@@ -19,6 +19,7 @@ class CreateBoardsTable extends Migration
             $table->unsignedBigInteger('board_workspace_id');
             $table->foreign('board_workspace_id')->references('workspace_id')
             ->on('workspaces')->onDelete('cascade');
+            $table->string('board_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }

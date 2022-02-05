@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\workspace;
+use App\Models\board;
 use App\Http\Requests\StoreworkspaceRequest;
 use App\Http\Requests\UpdateworkspaceRequest;
 use Inertia\Inertia;
@@ -16,8 +17,16 @@ class WorkspaceController extends Controller
      */
     public function index()
     {
+        $workspaces = Workspace::all()->where(('workspace_user_id'), auth()->user()->id);
+        $boards = array();
+        foreach($workspaces as $workspace)
+        {
+            $boards = array_merge($boards, Board::all()->where(('board_workspace_id'), $workspace->workspace_id)->toArray());
+        }
+
         return Inertia::render('Dashboard', [
-            'workspaces' => Workspace::all()->where('workspace_user_id', auth()->user()->id)
+            'workspaces' => $workspaces,
+            'boards' => $boards 
         ]);
     }
 
@@ -50,7 +59,9 @@ class WorkspaceController extends Controller
      */
     public function show(workspace $workspace)
     {
-        //
+        return Inertia::render('Workspace', [
+
+        ]);
     }
 
     /**

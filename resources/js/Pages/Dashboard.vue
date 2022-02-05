@@ -9,9 +9,10 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="d-flex flex-wrap ">
-                    <workspace v-for="workspaceItem in workspaces" 
-                    v-bind:key="workspaceItem.workspace_id" v-bind:workspaceItem="workspaceItem"/>
+                <div>
+                    <workspaceBoards v-for="workspaceItem in workspaces" 
+                    v-bind:key="workspaceItem.workspace_id" v-bind:workspaceItem="workspaceItem"
+                    v-bind:boards="selectedBoards(boards, workspaceItem.workspace_id)"/>
                 </div>
             </div>
         </div>
@@ -19,18 +20,26 @@
 </template>
 
 <script>
-    import { defineComponent, onMounted } from 'vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3'
+    import { defineComponent } from 'vue'
+    import { Head } from '@inertiajs/inertia-vue3'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import Workspace from '@/Jetstream/Workspace.vue'
+    import WorkspaceBoards from '@/Jetstream/custom/WorkspaceBoards.vue'
+    // import WorkspaceIcon from '@/Jetstream/custom/WorkspaceIcon.vue'
 
     export default defineComponent({
         components: {
+            Head,
             AppLayout,
-            Workspace
+            WorkspaceBoards
         },
         props: {
-            workspaces: {type: Array, required: true}
+            workspaces: Array,
+            boards: Array
+        },
+        methods: {
+            selectedBoards(boards, id){
+                return boards.filter(item => item.board_workspace_id == id);
+            }
         }
     })
 </script>
