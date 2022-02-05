@@ -8,7 +8,6 @@ use App\Models\card;
 use App\Http\Requests\StoreboardRequest;
 use App\Http\Requests\UpdateboardRequest;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Log;
 
 class BoardController extends Controller
 {
@@ -51,13 +50,13 @@ class BoardController extends Controller
      */
     public function show($boardId)
     {
-        Log::info($boardId);
         $board = Board::findOrFail($boardId);
-        $columns = Column::all()->where(('column_board_id'), $board->board_id);
+        $columns = Column::all()->where(('column_board_id'), $board->board_id)->where(('column_is_archived'), 0);
         $cards = array();
         foreach($columns as $column)
         {
-            $cards = array_merge($cards, Card::all()->where(('card_column_id'), $column->column_id)->toArray());
+            $cards = array_merge($cards, Card::all()->where(('card_column_id'), $column->column_id)
+            ->where(('card_is_archived'), 0)->toArray());
         }
 
         return Inertia::render('Board', [

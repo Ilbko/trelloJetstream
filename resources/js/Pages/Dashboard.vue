@@ -1,6 +1,5 @@
 <template>
-    <Head title="Workspaces | Trello"/>
-    <app-layout title="Dashboard">
+    <app-layout title="Workspaces | Trello">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
@@ -21,14 +20,12 @@
 
 <script>
     import { defineComponent } from 'vue'
-    import { Head } from '@inertiajs/inertia-vue3'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import WorkspaceBoards from '@/Jetstream/custom/WorkspaceBoards.vue'
     // import WorkspaceIcon from '@/Jetstream/custom/WorkspaceIcon.vue'
 
     export default defineComponent({
         components: {
-            Head,
             AppLayout,
             WorkspaceBoards
         },

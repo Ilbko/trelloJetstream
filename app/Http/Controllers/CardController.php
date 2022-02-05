@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\card;
+use App\Models\column;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorecardRequest;
 use App\Http\Requests\UpdatecardRequest;
+use Illuminate\Support\Facades\Log;
 
 class CardController extends Controller
 {
@@ -34,9 +37,16 @@ class CardController extends Controller
      * @param  \App\Http\Requests\StorecardRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecardRequest $request)
+    public function store(StoreCardRequest $request)
     {
-        //
+        $newCard = new Card;
+        $newCard->card_name = $request->input('cardName');
+        $newCard->column()->associate(Column::find($request->input('columnId')));
+        // $newCard->card_name = Request::get('cardName');
+        // $newCard->column()->associate(Column::find(Request::get('columnId')));
+        $newCard->save();
+
+        return Redirect()->back();
     }
 
     /**

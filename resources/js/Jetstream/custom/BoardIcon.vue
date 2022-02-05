@@ -1,5 +1,5 @@
 <template>
-    <div class=" ml-2 mt-2" style="width: 24%;">
+    <div class="mr-2 mt-2" style="width: 24%;">
         <Link :href="route('board', boardItem.board_id)">
         <div class="card" style="height: 100px; background-color: #adff2f">
             <div class="card-body pt-2 mx-auto" style="width: 80%">

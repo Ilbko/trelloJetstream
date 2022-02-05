@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [WorkspaceCon
 //BoardController
 Route::middleware(['auth:sanctum', 'verified'])->get('/board/show/{boardId}', [BoardController::class, 'show']
 )->name('board');
+
+//CardController
+Route::middleware(['auth:sanctum', 'verified'])->post('/card/store', [CardController::class, 'store']
+)->name('storeCard');

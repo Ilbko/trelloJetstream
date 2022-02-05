@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-2">
         <div>{{workspaceItem.workspace_name}}</div>
         <div class="flex flex-row flex-wrap">
             <board-icon v-for="boardItem in boards"
