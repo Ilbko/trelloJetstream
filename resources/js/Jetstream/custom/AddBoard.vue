@@ -53,7 +53,7 @@ export default defineComponent({
         JetButton
     },
     props: {
-        workspaces: Array
+        workspaces: {type: Array, required: true}
     },
     data() {
             return {

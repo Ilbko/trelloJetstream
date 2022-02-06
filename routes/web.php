@@ -43,6 +43,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/workspace/show/{workspace
 Route::middleware(['auth:sanctum', 'verified'])->post('/workspace/store', [WorkspaceController::class, 'store']
 )->name('storeWorkspace');
 
+Route::middleware(['auth:sanctum', 'verified'])->post('/workspace/destroy', [WorkspaceController::class, 'destroy']
+)->name('destroyWorkspace');
+
 //BoardController
 Route::middleware(['auth:sanctum', 'verified'])->get('/board/show/{boardId}', [BoardController::class, 'show']
 )->name('board');
@@ -56,6 +59,9 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/column/store', [ColumnCo
 
 Route::middleware(['auth:sanctum', 'verified'])->put('/column/archive/{column}', [ColumnController::class, 'archive']
 )->name('archiveColumn');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/board/destroy', [BoardController::class, 'destroy']
+)->name('destroyBoard');
 
 //CardController
 Route::middleware(['auth:sanctum', 'verified'])->post('/card/store', [CardController::class, 'store']

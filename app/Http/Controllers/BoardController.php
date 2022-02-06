@@ -9,6 +9,7 @@ use App\Models\card;
 use App\Http\Requests\StoreboardRequest;
 use App\Http\Requests\UpdateboardRequest;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
@@ -60,19 +61,24 @@ class BoardController extends Controller
     public function show($boardId)
     {
         $board = Board::findOrFail($boardId);
-        $columns = Column::all()->where(('column_board_id'), $board->board_id)->where(('column_is_archived'), 0);
-        $cards = array();
-        foreach($columns as $column)
+        if (auth()->user()->can('view', $board))
         {
-            $cards = array_merge($cards, Card::all()->where(('card_column_id'), $column->column_id)
-            ->where(('card_is_archived'), 0)->toArray());
-        }
+            $columns = Column::all()->where(('column_board_id'), $board->board_id)->where(('column_is_archived'), 0);
+            $cards = array();
+            foreach($columns as $column)
+            {
+                $cards = array_merge($cards, Card::all()->where(('card_column_id'), $column->column_id)
+                ->where(('card_is_archived'), 0)->toArray());
+            }
 
-        return Inertia::render('Board', [
-            'boardItem' => $board,
-            'columns' => $columns,
-            'cards' => $cards
-        ]);
+            return Inertia::render('Board', [
+                'boardItem' => $board,
+                'columns' => $columns,
+                'cards' => $cards
+            ]);
+        }
+        else
+            abort(403, 'Unauthorized action.');
     }
 
     /**

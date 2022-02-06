@@ -27,7 +27,7 @@ class WorkspaceController extends Controller
         }
 
         return Inertia::render('Dashboard', [
-            'workspaces' => $workspaces,
+            'workspaces' => array_values($workspaces->toArray()),
             'boards' => $boards 
         ]);
     }
@@ -110,6 +110,8 @@ class WorkspaceController extends Controller
      */
     public function destroy(workspace $workspace)
     {
-        //
+        $workspace->delete();
+
+        return Redirect()->back();
     }
 }

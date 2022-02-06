@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\workspace;
+use App\Policies\WorkspacePolicy;
+use App\Models\board;
+use App\Policies\BoardPolicy;
+use App\Models\column;
+use App\Policies\ColumnPolicy;
+use App\Models\card;
+use App\Policies\CardPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +21,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Workspace::class => WorkspacePolicy::class,
+        Board::class => BoardPolicy::class,
+        Column::class => ColumnPolicy::class,
+        Card::class => CardPolicy::class
     ];
 
     /**
@@ -24,7 +35,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

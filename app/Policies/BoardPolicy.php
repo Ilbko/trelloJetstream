@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\board;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class BoardPolicy
 {
@@ -30,7 +31,7 @@ class BoardPolicy
      */
     public function view(User $user, board $board)
     {
-        //
+        return $user->id === $board->workspace->user->id; 
     }
 
     /**

@@ -20046,7 +20046,10 @@ __webpack_require__.r(__webpack_exports__);
     JetButton: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
-    workspaces: Array
+    workspaces: {
+      type: Array,
+      required: true
+    }
   },
   data: function data() {
     return {
@@ -20425,20 +20428,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Jetstream_custom_BoardIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/custom/BoardIcon.vue */ "./resources/js/Jetstream/custom/BoardIcon.vue");
 /* harmony import */ var _Jetstream_custom_AddBoard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/custom/AddBoard.vue */ "./resources/js/Jetstream/custom/AddBoard.vue");
+/* harmony import */ var _Jetstream_DangerButton_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/DangerButton.vue */ "./resources/js/Jetstream/DangerButton.vue");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   components: {
     BoardIcon: _Jetstream_custom_BoardIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    AddBoard: _Jetstream_custom_AddBoard_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    AddBoard: _Jetstream_custom_AddBoard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetDangerButton: _Jetstream_DangerButton_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     workspaceItem: Object,
-    workspaces: Array,
+    workspaces: {
+      type: Array,
+      required: true
+    },
     boards: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    destroyWorkspace: function destroyWorkspace() {
+      if (confirm('Вы уверены, что хотите удалить это рабочее пространство?')) {
+        this.$inertia["delete"](route('destroyWorkspace'), this.workspaceItem);
+      }
     }
   }
 }));
@@ -21959,15 +21975,59 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-16 h-16",
-  viewBox: "0 0 48 48",
   fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M11.395 44.428C4.557 40.198 0 32.632 0 24 0 10.745 10.745 0 24 0a23.891 23.891 0 0113.997 4.502c-.2 17.907-11.097 33.245-26.602 39.926z",
-  fill: "#6875F5"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z",
-  fill: "#6875F5"
+  id: "eR8aXFi07Kc1",
+  xmlns: "http://www.w3.org/2000/svg",
+  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+  viewBox: "0 0 32 32",
+  "shape-rendering": "geometricPrecision",
+  "text-rendering": "geometricPrecision"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("defs", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("linearGradient", {
+  id: "eR8aXFi07Kc2-fill",
+  x1: "0.5",
+  y1: "0",
+  x2: "0.5",
+  y2: "1",
+  spreadMethod: "pad",
+  gradientUnits: "objectBoundingBox",
+  gradientTransform: "matrix(1 0 0 1 0 0)"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("stop", {
+  id: "eR8aXFi07Kc2-fill-0",
+  offset: "0%",
+  "stop-color": "rgb(173,255,47)"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("stop", {
+  id: "eR8aXFi07Kc2-fill-1",
+  offset: "100%",
+  "stop-color": "rgb(47,255,255)"
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("rect", {
+  id: "eR8aXFi07Kc2",
+  width: "32",
+  height: "32",
+  rx: "3",
+  ry: "3",
+  fill: "url(#eR8aXFi07Kc2-fill)",
+  stroke: "none",
+  "stroke-width": "0"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("rect", {
+  id: "eR8aXFi07Kc3",
+  width: "10.998895",
+  height: "26.042545",
+  rx: "1",
+  ry: "1",
+  transform: "matrix(1 0 0 1 2.982107 3.049951)",
+  fill: "rgb(255,255,255)",
+  stroke: "none",
+  "stroke-width": "0"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("rect", {
+  id: "eR8aXFi07Kc4",
+  width: "11.56658",
+  height: "17.030546",
+  rx: "1",
+  ry: "1",
+  transform: "matrix(0.92638 0 0 1 17.883837 3.049951)",
+  fill: "rgb(255,255,255)",
+  stroke: "none",
+  "stroke-width": "0"
 })], -1
 /* HOISTED */
 );
@@ -23720,16 +23780,39 @@ var _hoisted_1 = {
   }
 };
 var _hoisted_2 = {
+  "class": "flex flex-row justify-content-center"
+};
+var _hoisted_3 = {
+  "class": "mx-auto"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Удалить");
+
+var _hoisted_5 = {
   "class": "flex flex-row flex-wrap"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_jet_danger_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-danger-button");
+
   var _component_board_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("board-icon");
 
   var _component_add_board = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("add-board");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.workspaceItem.workspace_name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.workspaceItem.workspace_name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.boards, function (boardItem) {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_danger_button, {
+    "class": "pe-0",
+    onClick: _ctx.destroyWorkspace
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_4];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onClick"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.boards, function (boardItem) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_board_icon, {
       key: boardItem.board_id,
       boardItem: boardItem
