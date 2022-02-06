@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\column;
+use App\Models\board;
 use App\Http\Requests\StorecolumnRequest;
 use App\Http\Requests\UpdatecolumnRequest;
+use Illuminate\Support\Facades\Log;
 
 class ColumnController extends Controller
 {
@@ -36,7 +38,12 @@ class ColumnController extends Controller
      */
     public function store(StorecolumnRequest $request)
     {
-        //
+        $newColumn = new Column;
+        $newColumn->column_name = $request->input('columnName');
+        $newColumn->board()->associate(Board::find($request->input('boardId')));
+        $newColumn->save();
+
+        return Redirect()->back();
     }
 
     /**
@@ -59,6 +66,13 @@ class ColumnController extends Controller
     public function edit(column $column)
     {
         //
+    }
+
+    public function archive(UpdatecolumnRequest $request, column $column)
+    {
+        Column::where('column_id', $column->column_id)->update(['column_is_archived' => 1]);
+
+        return Redirect()->back();
     }
 
     /**

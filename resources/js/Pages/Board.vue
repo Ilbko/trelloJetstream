@@ -12,6 +12,7 @@
                     <column v-for="columnItem in columns" 
                     v-bind:key="columnItem.column_id" v-bind:columnItem="columnItem"
                     v-bind:cards="selectedCards(cards, columnItem.column_id)"/>
+                    <add-column v-bind:boardIdProp="boardItem.board_id"/>
                 </div>
             </div>
         </div>
@@ -22,11 +23,13 @@
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Column from '@/Jetstream/custom/Column.vue'
+    import AddColumn from '@/Jetstream/custom/AddColumn.vue'
 
     export default defineComponent({
         components: {
             AppLayout,
-            Column
+            Column,
+            AddColumn
         },
         props: {
             boardItem: Object,

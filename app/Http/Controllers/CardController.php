@@ -68,7 +68,14 @@ class CardController extends Controller
      */
     public function edit(card $card)
     {
-        //
+        
+    }
+
+    public function archive(UpdatecardRequest $request, card $card)
+    {
+        Card::where('card_id', $card->card_id)->update(['card_is_archived' => 1]);
+
+        return Redirect()->back();
     }
 
     /**
@@ -80,7 +87,10 @@ class CardController extends Controller
      */
     public function update(UpdatecardRequest $request, card $card)
     {
-        //
+        $card->update(['card_name' => $request->input('cardName'),
+         'card_description' => $request->input('cardDescription')]);
+
+        return Redirect()->back();
     }
 
     /**

@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item mt-2">
-        <div class="flex justify-content-between" style="border-radius: 3px; box-shadow: 0 1px 0 #091e4240;">
+        <div class="flex justify-content-between" style="border-radius: 3px;">
             <div ref="toggleableFirst" style="display: block" class="w-auto mx-auto">
                 <jet-button @click="toggleInput">
                     Добавить карточку
@@ -10,8 +10,7 @@
             <form @submit.prevent="onSubmit">
                 <div ref="toggleableSecond" class="flex flex-row" style="display: none">
                     <input type="hidden" v-model="form.columnId">
-                    <p>{{form.columnId}}</p>
-                    <input class="mx-auto" type="text" placeholder="Введите название..."
+                    <jet-input class="mx-auto" type="text" placeholder="Введите название..."
                     v-model="form.cardName"/>   
                     <jet-button type="submit" class="w-auto mx-auto mr-2">
                         Добавить
@@ -27,7 +26,7 @@
 </template>
 
 <script>
-import { defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 import JetInput from '@/Jetstream/Input.vue'
 import JetButton from '@/Jetstream/Button.vue'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue'
@@ -79,11 +78,12 @@ export default defineComponent({
                 this.$refs.toggleableFirst.style.display = "none";
                 this.$refs.toggleableSecond.style.display = "block";
             }           
+            this.form.reset();
         },
         onSubmit() {
             if (/\S/.test(this.form.cardName))
             {
-                this.form.post('/card/store', {preserveScroll: true, resetOnSuccess: false});
+                this.form.post(route('storeCard'), {preserveScroll: true, resetOnSuccess: false});
                 this.form.reset();     
                 // this.$emit('reloadCards');
             }

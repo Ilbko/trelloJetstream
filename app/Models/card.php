@@ -9,6 +9,8 @@ class card extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['card_name', 'card_description'];
+
     public function column(){
         return $this->belongsTo(Column::class, 'card_column_id', 'column_id');
     }
