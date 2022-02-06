@@ -40,6 +40,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [WorkspaceCon
 Route::middleware(['auth:sanctum', 'verified'])->get('/workspace/show/{workspaceId}', [WorkspaceController::class, 'show']
 )->name('workspace');
 
+Route::middleware(['auth:sanctum', 'verified'])->post('/workspace/store', [WorkspaceController::class, 'store']
+)->name('storeWorkspace');
+
 //BoardController
 Route::middleware(['auth:sanctum', 'verified'])->get('/board/show/{boardId}', [BoardController::class, 'show']
 )->name('board');
@@ -48,6 +51,9 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/board/store', [BoardCont
 )->name('storeBoard');
 
 //ColumnController
+Route::middleware(['auth:sanctum', 'verified'])->post('/column/store', [ColumnController::class, 'store']
+)->name('storeColumn');
+
 Route::middleware(['auth:sanctum', 'verified'])->put('/column/archive/{column}', [ColumnController::class, 'archive']
 )->name('archiveColumn');
 

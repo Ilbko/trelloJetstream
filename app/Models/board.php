@@ -9,12 +9,12 @@ class board extends Model
 {
     use HasFactory;
 
-    public function workplace(){
-        return $this->BelongsTo(Workspace::class, 'board_workspace_id', 'board_id');
+    public function workspace(){
+        return $this->BelongsTo(Workspace::class, 'board_workspace_id', 'workspace_id');
     }
     
     public function guestUser(){
-        return $this->belongsTo(UserBoard::class, 'user_board_id', 'board_id');
+        return $this->hasMany(UserBoard::class);
     }
 
     protected $primaryKey = 'board_id';

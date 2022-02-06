@@ -59,13 +59,10 @@ export default defineComponent({
             this.form.reset();
         },
         onSubmit() {
-            console.log('ping');
             if (/\S/.test(this.form.columnName))
             {
-                console.log('ping');
-                this.form.post(route('storeBoard'), {preserveScroll: true, resetOnSuccess: false});
+                this.form.post(route('storeColumn'), {preserveScroll: true, resetOnSuccess: true});
                 this.form.reset();     
-                // this.$emit('reloadCards');
             }
         }
     }

@@ -11,11 +11,11 @@ class workspace extends Model
     use HasFactory;
 
     public function user(){
-        return $this->belongsTo(User::class, 'workspace_user_id', 'workspace_id');
+        return $this->belongsTo(User::class, 'workspace_user_id', 'id');
     }
-    
+
     public function guestUser(){
-        return $this->belongsTo(UserWorkspace::class, 'user_workspace_id', 'workspace_id');
+        return $this->hasMany(UserWorkspace::class);
     }
 
     protected $primaryKey = 'workspace_id';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\user;
 use App\Models\workspace;
 use App\Models\board;
 use App\Http\Requests\StoreworkspaceRequest;
@@ -49,7 +50,16 @@ class WorkspaceController extends Controller
      */
     public function store(StoreworkspaceRequest $request)
     {
-        //
+        $request->validate([
+            'workspaceName' => ['required', 'max:64']
+        ]);
+
+        $newWorkspace = new Workspace;
+        $newWorkspace->workspace_name = $request->input('workspaceName');
+        $newWorkspace->user()->associate(User::find(auth()->user()->id));
+        $newWorkspace->save();
+
+        return Redirect()->back();
     }
 
     /**

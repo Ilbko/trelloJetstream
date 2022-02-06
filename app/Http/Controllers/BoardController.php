@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\workspace;
 use App\Models\board;
 use App\Models\column;
 use App\Models\card;
@@ -39,7 +40,15 @@ class BoardController extends Controller
      */
     public function store(StoreboardRequest $request)
     {
-        //
+        $request->validate([
+            'boardName' => ['required', 'max:64']
+        ]);
+        $newBoard = new Board;
+        $newBoard->board_name = $request->input('boardName');
+        $newBoard->workspace()->associate(Workspace::find($request->input('workspaceId')));
+        $newBoard->save();
+
+        return Redirect()->back();
     }
 
     /**
